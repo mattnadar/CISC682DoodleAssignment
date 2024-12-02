@@ -2,10 +2,11 @@ package com.example.cisc682doodleassignment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.PopupMenu;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,15 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
         doodleView = findViewById(R.id.doodleView);
 
-        // Clear Button
         Button clearButton = findViewById(R.id.clearButton);
         clearButton.setOnClickListener(v -> doodleView.clearCanvas());
 
-        // Color Button
         Button colorButton = findViewById(R.id.colorButton);
-        colorButton.setOnClickListener(v -> showColorPickerDialog());
+        colorButton.setOnClickListener(v -> showColorMenu(v));
 
-        // Brush Size SeekBar
         SeekBar brushSizeSeekBar = findViewById(R.id.brushSizeSeekBar);
         brushSizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -41,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) { }
         });
 
-        // Opacity SeekBar
         SeekBar opacitySeekBar = findViewById(R.id.opacitySeekBar);
         opacitySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -57,18 +54,49 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void showColorPickerDialog() {
-        // Predefined color options
-        String[] colors = {"Red", "Green", "Blue", "Black", "Yellow"};
-        int[] colorValues = {Color.RED, Color.GREEN, Color.BLUE, Color.BLACK, Color.YELLOW};
+    // Show a PopupMenu with color options
+    private void showColorMenu(android.view.View view) {
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        popupMenu.getMenu().add(0, 1, 0, "Red");
+        popupMenu.getMenu().add(0, 2, 0, "Green");
+        popupMenu.getMenu().add(0, 3, 0, "Blue");
+        popupMenu.getMenu().add(0, 4, 0, "Black");
+        popupMenu.getMenu().add(0, 5, 0, "Purple");
+        popupMenu.getMenu().add(0, 6, 0, "Yellow");
+        popupMenu.getMenu().add(0, 7, 0, "Gray");
 
-        // AlertDialog for color selection
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Choose a Color");
-        builder.setItems(colors, (dialog, which) -> {
-            // Set the color based on selection
-            doodleView.setColor(colorValues[which]);
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case 1:
+                        doodleView.setColor(Color.RED);
+                        break;
+                    case 2:
+                        doodleView.setColor(Color.GREEN);
+                        break;
+                    case 3:
+                        doodleView.setColor(Color.BLUE);
+                        break;
+                    case 4:
+                        doodleView.setColor(Color.BLACK);
+                        break;
+                    case 5:
+                        doodleView.setColor(Color.MAGENTA);
+                        break;
+                    case 6:
+                        doodleView.setColor(Color.YELLOW);
+                        break;
+                    case 7:
+                        doodleView.setColor(Color.GRAY);
+                        break;
+                    default:
+                        return false;
+                }
+                return true;
+            }
         });
-        builder.create().show();
+
+        popupMenu.show();
     }
 }

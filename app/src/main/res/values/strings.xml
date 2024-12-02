@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CISC682 DoodleAssignment</string>
+    <string name="color">Color</string>
+    <string name="clear">Clear</string>
+    <string name="brush_size">Brush Size</string>
+    <string name="opacity">Opacity</string>
 </resources>
