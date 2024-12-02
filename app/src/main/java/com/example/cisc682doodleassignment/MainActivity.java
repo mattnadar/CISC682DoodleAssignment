@@ -1,24 +1,54 @@
 package com.example.cisc682doodleassignment;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.SeekBar;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+    private DoodleView doodleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        doodleView = findViewById(R.id.doodleView);
+
+        Button clearButton = findViewById(R.id.clearButton);
+        clearButton.setOnClickListener(v -> doodleView.clearCanvas());
+
+        Button colorButton = findViewById(R.id.colorButton);
+        colorButton.setOnClickListener(v -> doodleView.setColor(Color.RED));
+
+        SeekBar brushSizeSeekBar = findViewById(R.id.brushSizeSeekBar);
+        brushSizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                doodleView.setBrushSize(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) { }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) { }
+        });
+
+        SeekBar opacitySeekBar = findViewById(R.id.opacitySeekBar);
+        opacitySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                doodleView.setOpacity(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) { }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) { }
         });
     }
 }
