@@ -3,36 +3,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@android:color/white"
     android:padding="8dp">
 
+
     <!-- Tool Panel -->
+
+    <!-- Brush Size Label and SeekBar -->
     <LinearLayout
         android:id="@+id/toolPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal">
 
         <Button
             android:id="@+id/clearButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Clear" />
+            android:layout_weight="0.5"
+            android:text="@string/clear"
+            android:gravity="center"/>
 
         <Button
             android:id="@+id/colorButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Color" />
+            android:layout_weight="0.5"
+            android:text="@string/color"
+
+            android:gravity="center"/>
 
     </LinearLayout>
 
-    <!-- Brush Size Label and SeekBar -->
     <TextView
         android:id="@+id/brushSizeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Brush Size"
+        android:text="@string/brush_size"
+        android:background="@android:color/white"
         android:layout_marginTop="16dp"
         android:gravity="center_horizontal" />
 
@@ -48,8 +58,9 @@
         android:id="@+id/opacityLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Opacity"
+        android:text="@string/opacity"
         android:layout_marginTop="16dp"
+        android:background="@android:color/white"
         android:gravity="center_horizontal" />
 
     <SeekBar
@@ -65,9 +76,10 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <com.example.cisc682doodleassignment.DoodleView
-            android:id="@+id/doodleView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
-</LinearLayout>
+    <com.example.cisc682doodleassignment.DoodleView
+        android:id="@+id/doodleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>
+
+    </LinearLayout>
