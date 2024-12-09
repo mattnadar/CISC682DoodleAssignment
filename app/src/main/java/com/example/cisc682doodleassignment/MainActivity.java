@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private DoodleView doodleView;
+    private boolean isEraserMode = false; // Track the current mode
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,19 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) { }
+        });
+
+        Button eraserButton = findViewById(R.id.eraserButton);
+        eraserButton.setOnClickListener(v -> {
+            isEraserMode = !isEraserMode; // Toggle the mode
+            doodleView.setEraserMode(isEraserMode);
+
+            // Update button text or visual feedback
+            if (isEraserMode) {
+                eraserButton.setText("Eraser ON");
+            } else {
+                eraserButton.setText("Eraser OFF");
+            }
         });
     }
 

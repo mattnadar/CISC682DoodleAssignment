@@ -15,6 +15,18 @@ public class DoodleView extends View {
     private ArrayList<DrawPath> paths;
     private DrawPath currentPath;
 
+    private boolean isEraserMode = false;
+    public void setEraserMode(boolean isEraser) {
+        isEraserMode = isEraser;
+        if (isEraserMode) {
+            paint.setColor(Color.WHITE); // Eraser color (background color)
+            paint.setStrokeWidth(50);
+        } else {
+            paint.setColor(Color.BLACK);
+            paint.setStrokeWidth(10);    // Default brush size
+        }
+    }
+
     public DoodleView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -70,6 +82,8 @@ public class DoodleView extends View {
 
     public void clearCanvas() {
         paths.clear();
+        isEraserMode = false; // Reset to drawing mode
+        setColor(Color.BLACK); // Reset to default color
         invalidate();
     }
 

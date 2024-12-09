@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@android:color/white"
+    android:orientation="vertical"
     android:padding="8dp">
 
 
@@ -14,26 +14,34 @@
         android:id="@+id/toolPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="16dp"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/eraserButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="Eraser" />
 
         <Button
             android:id="@+id/clearButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="@string/clear"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="@string/clear" />
 
         <Button
             android:id="@+id/colorButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="@string/color"
+            android:gravity="center"
 
-            android:gravity="center"/>
+            android:text="@string/color" />
 
     </LinearLayout>
 
@@ -41,10 +49,10 @@
         android:id="@+id/brushSizeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/brush_size"
-        android:background="@android:color/white"
         android:layout_marginTop="16dp"
-        android:gravity="center_horizontal" />
+        android:background="@android:color/white"
+        android:gravity="center_horizontal"
+        android:text="@string/brush_size" />
 
     <SeekBar
         android:id="@+id/brushSizeSeekBar"
@@ -58,10 +66,10 @@
         android:id="@+id/opacityLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/opacity"
         android:layout_marginTop="16dp"
         android:background="@android:color/white"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"
+        android:text="@string/opacity" />
 
     <SeekBar
         android:id="@+id/opacitySeekBar"
@@ -76,10 +84,10 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-    <com.example.cisc682doodleassignment.DoodleView
-        android:id="@+id/doodleView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</FrameLayout>
+        <com.example.cisc682doodleassignment.DoodleView
+            android:id="@+id/doodleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
 
-    </LinearLayout>
+</LinearLayout>
